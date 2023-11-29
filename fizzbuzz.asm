@@ -11,12 +11,14 @@
 [org 0x7c00]
     ; set up stack at just below what we load
     ; and all segment registers to 0
+    cli
     mov     bp, 0x7c00
     xor     ax, ax
     mov     ds, ax
     mov     es, ax
     mov     ss, ax  
     mov     sp, bp
+    sti
 
     jmp     fizzbuzz
 
@@ -82,7 +84,7 @@ fizzbuzz:
 
     .end:
 
-    jmp $   ; just sit here forever
+    jmp kbin   ; just sit here forever
 
 
 ; use NUL terminated strings
