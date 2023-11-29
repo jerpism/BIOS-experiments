@@ -34,7 +34,7 @@ print_hex:
     call print_char
 
     test cl, cl     ; cl > 0?
-    jnz convloop    ; do next 4 bits
+    jnz .convloop   ; do next 4 bits
 
     pop cx
     pop bx
