@@ -1,14 +1,14 @@
 ; prints out value as decimal in ASCII
 ; cx contains unsigned number to print
 print_num:
-    ; save registers 
-    push    ax
-    push    bx
-    push    cx
-    push    dx
+    push    ax          ; need ax for printing always
 
     test    cx, cx      ; see if we just have a 0
-    jz      .print_zero
+    jz      .print_zero ; we do, just print it out
+
+    push    bx          ; otherwise save other 
+    push    cx          ; registers as well
+    push    dx
 
     mov     ax, cx
 
@@ -38,9 +38,11 @@ print_num:
     jmp    .print_loop  ; do next one
 
     .print_zero:
-    mov     ah, 0x0e
-    mov     al, '0'
+    mov     ah, 0x0e    ; just print out a 0
+    mov     al, '0'     
     int     0x10
+    pop     ax          ; restore ax
+    ret                 ; and return
 
     .end:
     pop     dx

@@ -151,7 +151,7 @@ kbin:
 ; Checks counter to see if we're
 ; good to keep using the current page
 ; or if we should move one ahead.
-
+;
 ; Uses value in CX to determine this
 ; Change macro MAX_LINES as desired
 check_page:
