@@ -31,6 +31,11 @@ setmode:
     mov     al, 0x02    ; 80x25 greyscale
     int     0x10
 
+    mov     ah, 0x05    ; and set current page
+    mov     al, 0x00    ; to 0
+    int     0x10        
+
+
 fizzbuzz:
     mov     cx, 0       ; counter initialize
 
@@ -109,6 +114,9 @@ kbin:
     mov     ah, 0x00    ; read key
     int     0x16        
 
+    cmp     al, 'r'     ; read 'r' key?
+    je      .reset      ; go reset
+
     cmp     ah, 0x49    ; pgup code?
     je      .pgup       ; go handle that
 
@@ -124,7 +132,7 @@ kbin:
     add     al, 1       ; we'll want page n+1
     mov     ah, 0x05    ; and set the current one
     int     0x10        ; to that page
-    jmp kbin            ; wait for next key
+    jmp     kbin        ; wait for next key
 
     .pgup:
     mov     ah, 0x0f    ; get video mode
@@ -134,7 +142,10 @@ kbin:
     sub     al, 1       ; we'll want page n-1
     mov     ah, 0x05    ; and set the current one
     int     0x10        ; to that page
-    jmp kbin            ; wait for next key
+    jmp     kbin        ; wait for next key
+
+    .reset:
+    jmp     setmode     ; reset everything and run through again
 
 
 ; Checks counter to see if we're
