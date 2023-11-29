@@ -10,7 +10,7 @@
 %define MAX_NUM 100
 
 ; How many lines to display per page
-%define MAX_LINES 25
+%define MAX_LINES 16
 
 [org 0x7c00]
     ; set up stack at just below what we load
