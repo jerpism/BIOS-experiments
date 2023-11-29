@@ -7,9 +7,10 @@ print_num:
     push    cx
     push    dx
 
-    mov     ax, cx
-    test    ax, ax      ; see if we just have a 0
+    test    cx, cx      ; see if we just have a 0
     jz      .print_zero
+
+    mov     ax, cx
 
     ; set up counter and divisor
     mov     bx, 10      ; divisor
