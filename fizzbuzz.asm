@@ -15,8 +15,8 @@ fizzbuzz:
     mov     cx, 0       ; counter initialize
 
     .loop:
-    add     cx, 1       ; increment counter
-    cmp     cx, MAX_NUM ; print out to this
+    add     cx, 1       
+    cmp     cx, MAX_NUM ; print out to this number
     jg      .end        ; done
 
 
